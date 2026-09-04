@@ -5,13 +5,15 @@ on:
     tags:
       - 'v*'
 
-# Прямое разрешение на создание релизов и загрузку файлов
+# Выдача полных прав токену на создание релизов
 permissions:
   contents: write
 
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -39,5 +41,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: F.13_Windows.zip
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
