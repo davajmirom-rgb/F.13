@@ -5,6 +5,10 @@ on:
     tags:
       - 'v*'
 
+# Прямое разрешение на создание релизов и загрузку файлов
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: windows-latest
